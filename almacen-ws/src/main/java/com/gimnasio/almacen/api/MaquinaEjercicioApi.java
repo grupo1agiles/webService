@@ -33,7 +33,7 @@ public class MaquinaEjercicioApi {
 	
 	//Crear nueva maquina
 	@RequestMapping(value="/maquinaNueva", method=RequestMethod.POST)
-	public MaquinaEjercicioResponse updateOrSave(@RequestBody @Valid MaquinaEjercicioRequest maquinaRequest){
+	public ResponseEntity updateOrSave(@RequestBody @Valid MaquinaEjercicioRequest maquinaRequest){
 	    // Mapeo request dto ==&amp;amp;amp;amp;amp;gt; entity
 		MaquinaEjercicio maquina = mapper.map(maquinaRequest, MaquinaEjercicio.class);
 	     
@@ -43,7 +43,8 @@ public class MaquinaEjercicioApi {
 	    // Mapeo entity ==&amp;amp;amp;amp;amp;gt; response dto
 		MaquinaEjercicioResponse maquinaResponse = mapper.map(updatedMaquinaEjercicio, MaquinaEjercicioResponse.class); 
 	     
-	    return maquinaResponse;
+	    //return maquinaResponse;
+            return new ResponseEntity<>("Registro exitoso", HttpStatus.ACCEPTED);
 	}
 	
 	//Listado de maquinas
