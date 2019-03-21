@@ -5,8 +5,10 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "MaquinaEjercicio")
 public class MaquinaEjercicio implements Serializable {
 	
 	 private static final long serialVersionUID = 4894729030347835498L;
@@ -18,6 +20,10 @@ public class MaquinaEjercicio implements Serializable {
 	 private String serial;
 	 private String ubicacion;
 	 
+	 public MaquinaEjercicio(){
+			
+		}
+	 
 	public MaquinaEjercicio(Long id, String nombre, String serial, String ubicacion) {
 		super();
 		this.id = id;
@@ -26,11 +32,19 @@ public class MaquinaEjercicio implements Serializable {
 		this.ubicacion = ubicacion;
 	}
 	
-	
 	@Override
 	public String toString() {
-		return "MaquinaEjercicio [id=" + id + ", nombre=" + nombre + ", serial=" + serial + ", ubicacion=" + ubicacion
-				+ "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Maquina [id=");
+		builder.append(id);
+		builder.append(", nombre=");
+		builder.append(nombre);
+		builder.append(", serial=");
+		builder.append(serial);
+		builder.append(", ubicacion=");
+		builder.append(ubicacion);
+		builder.append("]");
+		return builder.toString();
 	}
 
 	public Long getId() {
