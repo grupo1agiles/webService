@@ -31,7 +31,8 @@ public class MaquinaEjercicioApi {
 	@Autowired
 	Mapper mapper;
 	
-	@RequestMapping(value="/maquina", method=RequestMethod.POST)
+	//Crear nueva maquina
+	@RequestMapping(value="/maquinaNueva", method=RequestMethod.POST)
 	public MaquinaEjercicioResponse updateOrSave(@RequestBody @Valid MaquinaEjercicioRequest maquinaRequest){
 	    // Mapeo request dto ==&amp;amp;amp;amp;amp;gt; entity
 		MaquinaEjercicio maquina = mapper.map(maquinaRequest, MaquinaEjercicio.class);
@@ -45,19 +46,13 @@ public class MaquinaEjercicioApi {
 	    return maquinaResponse;
 	}
 	
-	@RequestMapping(value="/maquinaEjercicio1", method=RequestMethod.GET)
-	public MaquinaEjercicio getById(){
-        return new MaquinaEjercicio(1L, "Eliptica", "4544DD456SFSA", "Zona Cardio");
-    }
-	
-	
-	/////////////////////
-	
+	//Listado de maquinas
 	 @RequestMapping(value = "/maquinaEjercicio", method = RequestMethod.GET, produces = "application/json")
-	    public List<MaquinaEjercicio> listAllbook(){
+	    public List<MaquinaEjercicio> listAll(){
 	        return (List<MaquinaEjercicio>)reposotry.findAll();
 	    }
 	    
+	//busca maquinas de ejercicio por id
 	    @RequestMapping(value = "/maquinaEjercicio/id/{id}", method = RequestMethod.GET, produces = "application/json")
 	    public ResponseEntity getById(@PathVariable Long id){
 	    	MaquinaEjercicio maquinabyid = reposotry.getByid(id);
@@ -66,16 +61,6 @@ public class MaquinaEjercicioApi {
 	        }
 	            return new ResponseEntity<>(maquinabyid, HttpStatus.ACCEPTED);
 	        
-	    }
-	////////////////////////////0
-	    
-	    
-	    @GetMapping("/insert")
-	    public String bulkcreate(){
-	    // save a single Customer
-	    	reposotry.save(new MaquinaEjercicio(1L,"Eliptica", "FG56DSF23","Zona cardio"));
-	   
-	    return "Customers are created";
 	    }
 	    
 }
